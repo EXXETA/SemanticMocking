@@ -11,9 +11,9 @@ public class DialogServiceMock : MoqMock<
     DialogServiceMock.Assertions, 
     DialogServiceMock.Raises>
 {
-    public class Arrangements : ArrangementsFor<DialogServiceMock> { }
+    public class Arrangements : BehaviourFor<DialogServiceMock> { }
    
-    public class Assertions : AssertionsFor<DialogServiceMock>
+    public class Assertions : BehaviourFor<DialogServiceMock>
     {
         public Assertions DidShowErrorAlert(string? message = null)
         {
@@ -39,5 +39,5 @@ public class DialogServiceMock : MoqMock<
         }
     }
     
-    public class Raises : RaisesFor<DialogServiceMock> { }
+    public class Raises : BehaviourFor<DialogServiceMock> { }
 }

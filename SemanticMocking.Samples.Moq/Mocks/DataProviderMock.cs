@@ -11,7 +11,7 @@ public class DataProviderMock : MoqMock<
     DataProviderMock.Assertions, 
     DataProviderMock.Raises>
 {
-    public class Arrangements : ArrangementsFor<DataProviderMock>
+    public class Arrangements : BehaviourFor<DataProviderMock>
     {
         public Arrangements GetRecordsFailsWith(Exception exception)
         {
@@ -36,11 +36,11 @@ public class DataProviderMock : MoqMock<
         }
     }
    
-    public class Assertions : AssertionsFor<DataProviderMock>
+    public class Assertions : BehaviourFor<DataProviderMock>
     {
     }
 
-    public class Raises : RaisesFor<DataProviderMock>
+    public class Raises : BehaviourFor<DataProviderMock>
     {
     }
 }
