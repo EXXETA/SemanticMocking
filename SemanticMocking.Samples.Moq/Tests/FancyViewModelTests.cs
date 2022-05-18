@@ -15,7 +15,7 @@ public class Tests
     {
         _dialogService = new DialogServiceMock();
         
-        _sut = new FancyViewModel(_dialogService.Object);
+        _sut = new FancyViewModel(_dialogService.Mock.Object);
     }
 
     [Test]
