@@ -15,10 +15,26 @@ public class DialogServiceMock : MoqMock<
    
     public class Assertions : AssertionsFor<DialogServiceMock>
     {
-        public Assertions DidShowErrorAlert()
+        public Assertions DidShowErrorAlert(string? message = null)
+        {
+            if (message == null)
+            {
+                Parent.Mock
+                    .Verify(mock => mock.ShowMessageAsync("Error", It.IsAny<string>()));
+            }
+            else
+            {
+                Parent.Mock
+                    .Verify(mock => mock.ShowMessageAsync("Error", message));
+            }
+            
+            return this;
+        }
+
+        public Assertions DidShowMessage(string message)
         {
             Parent.Mock
-                .Verify(mock => mock.ShowAlertAsync("Error", It.IsAny<string>()));
+                .Verify(mock => mock.ShowMessageAsync(It.IsAny<string>(), message));
             return this;
         }
     }

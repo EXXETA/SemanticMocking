@@ -4,5 +4,5 @@ namespace SemanticMocking.SampleTests.App;
 
 public interface IDialogService
 {
-    Task ShowAlertAsync(string title, string message);
+    Task ShowMessageAsync(string title, string message);
 }
