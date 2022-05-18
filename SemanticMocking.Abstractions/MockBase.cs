@@ -21,6 +21,10 @@ namespace SemanticMocking.Abstractions
             Arrange = new TArrange();
             Assert = new TAssert();
             Raise = new TRaise();
+            
+            SetParentProperty(Arrange, this);
+            SetParentProperty(Assert, this);
+            SetParentProperty(Raise, this);
         }
 
         /// <summary>
@@ -35,16 +39,12 @@ namespace SemanticMocking.Abstractions
         protected void SetMock(TMock mock)
         {
             Mock = mock;
-            
-            SetMockProperty(Arrange, mock);
-            SetMockProperty(Assert, mock);
-            SetMockProperty(Raise, mock);
         }
         
-        private void SetMockProperty(object behaviour, TMock mock)
+        private void SetParentProperty(object behaviour, MockBase<TMock, TArrange, TAssert, TRaise> parent)
         {
-            var propertyInfo = behaviour.GetType().GetProperty("Mock", BindingFlags.NonPublic | BindingFlags.Instance);
-            propertyInfo?.SetValue(behaviour, mock);
+            var propertyInfo = behaviour.GetType().GetProperty("Parent", BindingFlags.NonPublic | BindingFlags.Instance);
+            propertyInfo?.SetValue(behaviour, parent);
         }
     }
 }
