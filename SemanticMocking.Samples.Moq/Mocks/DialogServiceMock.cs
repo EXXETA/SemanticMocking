@@ -1,7 +1,7 @@
 using Moq;
 using SemanticMocking.Abstractions;
 using SemanticMocking.Moq;
-using SemanticMocking.SampleTests.App;
+using SemanticMocking.Samples.TaskApp;
 
 namespace SemanticMocking.SampleTests.Mocks;
 
@@ -15,7 +15,7 @@ public class DialogServiceMock : MoqMock<
    
     public class Assertions : BehaviourFor<DialogServiceMock>
     {
-        public Assertions DidShowErrorAlert(string? message = null)
+        public Assertions DidShowError(string? message = null)
         {
             if (message == null)
             {
@@ -35,6 +35,13 @@ public class DialogServiceMock : MoqMock<
         {
             Parent.Mock
                 .Verify(mock => mock.ShowMessageAsync(It.IsAny<string>(), message));
+            return this;
+        }
+        
+        public Assertions DidShowInfo(string message)
+        {
+            Parent.Mock
+                .Verify(mock => mock.ShowMessageAsync("Info", message));
             return this;
         }
     }

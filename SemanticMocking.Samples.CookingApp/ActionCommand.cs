@@ -1,7 +1,6 @@
-using System;
 using System.Windows.Input;
 
-namespace SemanticMocking.SampleTests.App;
+namespace SemanticMocking.Samples.TaskApp;
 
 public class ActionCommand : ICommand
 {

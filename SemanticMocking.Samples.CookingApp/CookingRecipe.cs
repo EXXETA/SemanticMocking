@@ -1,6 +1,6 @@
-namespace SemanticMocking.SampleTests.App;
+namespace SemanticMocking.Samples.TaskApp;
 
-public class DataRecord
+public class CookingRecipe
 {
     public string Id { get; set; }
     public string Title { get; set; }

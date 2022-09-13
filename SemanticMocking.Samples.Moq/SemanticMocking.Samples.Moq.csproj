@@ -19,6 +19,7 @@
     <ItemGroup>
       <ProjectReference Include="..\SemanticMocking.Abstractions\SemanticMocking.Abstractions.csproj" />
       <ProjectReference Include="..\SemanticMocking.Moq\SemanticMocking.Moq.csproj" />
+      <ProjectReference Include="..\SemanticMocking.Samples.CookingApp\SemanticMocking.Samples.CookingApp.csproj" />
     </ItemGroup>
 
 </Project>
