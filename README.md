@@ -24,7 +24,7 @@ with one of its dependencies.
 The arrange part is the one that can become a little complex in some scenarios and the setup of 
 the dependencies may fill the most lines of your test. It is best practice to inspect only one aspect 
 in every unit test, but in those complex setup scenarios we tend to do multiple assertions trying to 
-avoid copy and pasting the arrange code into multiple tests.
+avoid copy and paste the arrange code to multiple tests.
 
 SemanticMocking will help you to reduce the code that is needed for your arrangements and will provide 
 you a growing reusable mocking api. 
@@ -115,27 +115,38 @@ public Task DeleteUserAsync_UserConfirms_ShouldDeleteUser()
     _storageService.Assert.UserWasDeleted(true);
 }
 ```
-As we can see the tests got even shorter and even more readable. There is no code duplication 
-and no irrelevant aspects anymore. Also there is no code specific to moq in these tests. 
-Therefore changing the mocking framework late in the project becomes easier.
-A side-effect is also that your unit tests are easier to grasp in a code review. 
-From my experience the bigger the pull request is the less likely it is that someone will
-have a deep look at the unit tests when they are hard to read/understand.
 
-You may wonder if it would improve the semantic meaning use single mock methods in this example 
-instead of using boolean parameters:
+Even for these short unit tests we can see some benefits here:
+- The tests are even shorter and easier to understand
+- There is less code duplication
+- changing the mocking framework will be easier (no code specific to moq)
+
+# But know we are hiding the implementation details of the dependencies!
+Yes that is true. But does that really matter? We are testing the view model class
+and not the dependencies. The implementation details are just one F12-key press away.  
+
+Abstracting the details of the dependencies helps to focus on the interaction of the sut
+with the dependencies on a semantic level not a technical one.
+Also from my experience the bigger a pull request is the less likely it is that someone will
+have a deep look at the unit tests. Especially when they are hard to read and understand.
+
+# Whouldn't the mock methods look nicer without the boolean parameter?
+You mean like this?
 
 ```c#
 _storageService.Assert.UserWasDeleted();
+
 _storageService.Assert.UserWasNotDeleted();
 ```
 
-You can do this for sure. I for myself want to keep the list of mock methods short and want to 
+You can do this for sure. I for myself like to keep the list of mock methods short and want to 
 be able to reuse existing methods by parameterizing them. When you provide good xml documentation and 
 parameter names, intellisense will give you a good explanation how to use these parameters.
 Remember that I said we should understand these mock methods as an API for your dependencies?
 Every API should be well documented (except everything that is self explaining). 
 The mock methods are no exception.
+I know this won't help much during a code review you do in Jira or Azure DevOps and not in the IDE. Therefore you
+should develop a common sense for when and how to use mock methods parameters within your team.
 
 # Ok, now you have convinced me. How can I start using it?
 Great. The easiest way to start is to add the SemanticMocking nuget packages to your test project. 
