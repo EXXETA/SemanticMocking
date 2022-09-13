@@ -5,8 +5,6 @@
         <Nullable>enable</Nullable>
 
         <IsPackable>false</IsPackable>
-
-        <RootNamespace>SemanticMocking.SampleTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,9 +15,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SemanticMocking.Abstractions\SemanticMocking.Abstractions.csproj" />
-      <ProjectReference Include="..\SemanticMocking.Moq\SemanticMocking.Moq.csproj" />
-      <ProjectReference Include="..\SemanticMocking.Samples.CookingApp\SemanticMocking.Samples.CookingApp.csproj" />
+      <ProjectReference Include="..\..\SemanticMocking.Abstractions\SemanticMocking.Abstractions.csproj" />
+      <ProjectReference Include="..\..\SemanticMocking.Moq\SemanticMocking.Moq.csproj" />
+      <ProjectReference Include="..\SemanticMocking.CookingApp\SemanticMocking.CookingApp.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 using System.Windows.Input;
 
-namespace SemanticMocking.Samples.TaskApp;
+namespace SemanticMocking.CookingApp;
 
 public class ActionCommand : ICommand
 {

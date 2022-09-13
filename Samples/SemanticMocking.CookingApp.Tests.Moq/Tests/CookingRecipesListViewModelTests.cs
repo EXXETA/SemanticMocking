@@ -1,10 +1,9 @@
 using System.Data;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using SemanticMocking.Samples.TaskApp;
-using SemanticMocking.SampleTests.Mocks;
+using SemanticMocking.CookingApp.Tests.Moq.Mocks;
 
-namespace SemanticMocking.SampleTests.Tests;
+namespace SemanticMocking.CookingApp.Tests.Moq.Tests;
 
 public class CookingRecipesListViewModelTests
 {

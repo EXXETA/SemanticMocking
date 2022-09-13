@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using Moq;
 using SemanticMocking.Abstractions;
 using SemanticMocking.Moq;
-using SemanticMocking.Samples.TaskApp;
 
-namespace SemanticMocking.SampleTests.Mocks;
+namespace SemanticMocking.CookingApp.Tests.Moq.Mocks;
 
 public class CookingRecipeProviderMock : MoqMock<
     ICookingRecipeProvider, 

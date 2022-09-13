@@ -1,4 +1,4 @@
-namespace SemanticMocking.Samples.TaskApp;
+namespace SemanticMocking.CookingApp;
 
 public interface IDialogService
 {

@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
-namespace SemanticMocking.Samples.TaskApp;
+namespace SemanticMocking.CookingApp;
 
 public class CookingRecipesListViewModel
 {
