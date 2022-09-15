@@ -1,7 +1,10 @@
 # What is it about?
 
-SemanticMocking helps you to abstract the mocking framework from the unit test. It enables you to provide 
+SemanticMocking helps you to abstract the mocking framework from the unit test and to provide 
 an API for your dependencies that describe their behaviour in a more semantic way.
+
+SemanticMocking is not really a framework it is just a bunch of classes that help you to implement 
+your mocks in a consistent way and to make them more meaningful.
 
 # Why do I need this?
 Unit tests should be simple not only to write but also to read. Using mocking frameworks helps us to 
