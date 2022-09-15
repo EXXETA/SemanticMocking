@@ -6,6 +6,10 @@ namespace SemanticMocking.Abstractions
     /// <typeparam name="TParent">The parent mock object.</typeparam>
     public abstract class BehaviourFor<TParent> : IMockBehaviour
     {
+#pragma warning disable CS8618
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global
+        // Parent will be set via Reflection by MockBase class.
         protected TParent Parent { get; init; }
+#pragma warning restore CS8618
     }
 }
