@@ -4,6 +4,13 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+
+        <!-- NuGet metadata -->
+        <PackageId>SemanticMocking.Abstractions</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>Karim El Jed</Authors>
+        <Company>EXXETA AG</Company>
+        <PackRelease>true</PackRelease>
     </PropertyGroup>
 
 </Project>
