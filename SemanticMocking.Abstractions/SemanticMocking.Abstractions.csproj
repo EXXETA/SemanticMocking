@@ -7,10 +7,26 @@
 
         <!-- NuGet metadata -->
         <PackageId>SemanticMocking.Abstractions</PackageId>
-        <Version>1.0.0</Version>
+        <Version>0.1.1-alpha</Version>
         <Authors>Karim El Jed</Authors>
         <Company>EXXETA AG</Company>
         <PackRelease>true</PackRelease>
+        <PackageProjectUrl>https://github.com/EXXETA/SemanticMocking/</PackageProjectUrl>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageTags>moq;nunit;xunit;mstest</PackageTags>
+        <Description>SemanticMocking helps you to abstract the mocking framework from the unit test and to provide an API for your dependencies that describe their behaviour in a more semantic way.</Description>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>bin\Debug\net6.0\SemanticMocking.Abstractions.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DocumentationFile>bin\Release\net6.0\SemanticMocking.Abstractions.xml</DocumentationFile>
+      <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="..\LICENSE.txt" Link="LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
+    </ItemGroup>
 </Project>
