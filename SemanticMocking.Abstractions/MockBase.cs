@@ -16,6 +16,9 @@ namespace SemanticMocking.Abstractions
         where TAssert : IMockBehaviour, new()
         where TRaise : IMockBehaviour, new()
     {
+        /// <summary>
+        /// Base constructor that initializes the mock and wires up the behaviour implementations.
+        /// </summary>
         protected MockBase()
         {
             Arrange = new TArrange();
@@ -32,10 +35,25 @@ namespace SemanticMocking.Abstractions
         /// </summary>
         public TMock Mock { get; private set; } = null!;
         
+        /// <summary>
+        /// Gets all behaviours that can be arranged.
+        /// </summary>
         public TArrange Arrange { get; }
+        
+        /// <summary>
+        /// Gets all behaviours that can be verified.
+        /// </summary>
         public TAssert Assert { get; }
+        
+        /// <summary>
+        /// Gets all events that can be raised.
+        /// </summary>
         public TRaise Raise { get; set; }
         
+        /// <summary>
+        /// Call this method from the mocking framework dependant implementation of this class. 
+        /// </summary>
+        /// <param name="mock"></param>
         protected void SetMock(TMock mock)
         {
             Mock = mock;
