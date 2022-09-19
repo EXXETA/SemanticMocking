@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SemanticMocking.Abstractions\SemanticMocking.Abstractions.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="NSubstitute" Version="4.4.0" />
+        <PackageReference Include="SemanticMocking.Abstractions" Version="0.1.1-alpha" />
+    </ItemGroup>
+
+</Project>
