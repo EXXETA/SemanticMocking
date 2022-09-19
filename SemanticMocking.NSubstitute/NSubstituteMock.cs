@@ -13,6 +13,4 @@ public abstract class NSubstituteMock<TInterface, TArrange, TAssert, TRaise> : M
     {
         SetMock(Substitute.For<TInterface>());
     }
-
-    public TInterface Object => Mock;
 }
