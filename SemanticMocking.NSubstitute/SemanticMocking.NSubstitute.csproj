@@ -4,6 +4,17 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+
+        <!-- NuGet metadata -->
+        <PackageId>SemanticMocking.NSubstitute</PackageId>
+        <Version>0.1.1-alpha</Version>
+        <Authors>Karim El Jed</Authors>
+        <Company>EXXETA AG</Company>
+        <PackRelease>true</PackRelease>
+        <PackageProjectUrl>https://github.com/EXXETA/SemanticMocking/</PackageProjectUrl>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageTags>nsubstitute;nunit;xunit;mstest</PackageTags>
+        <Description>Implementation of SemanticMocking using NSubstitute.</Description>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,4 +26,7 @@
         <PackageReference Include="SemanticMocking.Abstractions" Version="0.1.1-alpha" />
     </ItemGroup>
 
+    <ItemGroup>
+        <Content Include="..\LICENSE.txt" Link="LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
+    </ItemGroup>
 </Project>

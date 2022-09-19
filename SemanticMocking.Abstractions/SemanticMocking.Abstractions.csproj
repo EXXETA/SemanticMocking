@@ -13,7 +13,7 @@
         <PackRelease>true</PackRelease>
         <PackageProjectUrl>https://github.com/EXXETA/SemanticMocking/</PackageProjectUrl>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <PackageTags>moq;nunit;xunit;mstest</PackageTags>
+        <PackageTags>nunit;xunit;mstest</PackageTags>
         <Description>SemanticMocking helps you to abstract the mocking framework from the unit test and to provide an API for your dependencies that describe their behaviour in a more semantic way.</Description>
     </PropertyGroup>
 
