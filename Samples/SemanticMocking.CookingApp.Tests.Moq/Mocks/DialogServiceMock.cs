@@ -8,7 +8,7 @@ public class DialogServiceMock : MoqMock<
     IDialogService, 
     DialogServiceMock.Arrangements, 
     DialogServiceMock.Assertions, 
-    DialogServiceMock.Raises>
+    NoBehaviour>
 {
     public class Arrangements : BehaviourFor<DialogServiceMock> { }
    
@@ -44,6 +44,4 @@ public class DialogServiceMock : MoqMock<
             return this;
         }
     }
-    
-    public class Raises : BehaviourFor<DialogServiceMock> { }
 }

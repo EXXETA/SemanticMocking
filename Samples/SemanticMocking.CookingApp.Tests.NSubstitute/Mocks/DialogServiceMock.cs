@@ -8,7 +8,7 @@ public class DialogServiceMock : NSubstituteMock<
     IDialogService, 
     DialogServiceMock.Arrangements, 
     DialogServiceMock.Assertions, 
-    DialogServiceMock.Raises>
+    NoBehaviour>
 {
     public class Arrangements : BehaviourFor<DialogServiceMock> { }
    
@@ -40,6 +40,4 @@ public class DialogServiceMock : NSubstituteMock<
             return this;
         }
     }
-    
-    public class Raises : BehaviourFor<DialogServiceMock> { }
 }
