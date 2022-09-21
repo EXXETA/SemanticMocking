@@ -3,7 +3,7 @@
 SemanticMocking helps you to abstract the mocking framework from the unit test and to provide 
 an API for your dependencies that describe their behaviour in a more semantic way.
 
-SemanticMocking is not really a framework it is just a bunch of classes that help you to implement 
+SemanticMocking is not really a framework it is just a few classes that help you to implement 
 your mocks in a consistent way and to make them more meaningful.
 
 # Why do I need this?
@@ -24,13 +24,12 @@ behavior of its dependencies. After that you execute a method of your SUT that y
 At the end you assert the return value of this act method or verify an interaction that took place 
 with one of its dependencies.
 
-The arrange part is the one that can become a little complex in some scenarios and the setup of 
-the dependencies may fill the most lines of your test. It is best practice to inspect only one aspect 
-in every unit test, but in those complex setup scenarios we tend to do multiple assertions trying to 
-avoid copy and paste the arrange code to multiple tests or to use private methods.
+The arrange part is the one that can become a little bit complex in some scenarios and the setup of 
+the dependencies may fill the most lines of your test. It is best practice to check only one aspect 
+in each unit test, but in complex setup scenarios we tend to perform multiple assertions trying to 
+avoid copying and pasting the arrange code into multiple tests, or to use private methods.
 
-SemanticMocking will help you to reduce the code that is needed for your arrangements and will provide 
-you a growing reusable mocking api. 
+SemanticMocking will help you to reduce the code that is needed for your arrangements and will provide you a reusable mocking api. 
 
 # Hmm, can you show me some examples?
 Sure. Let's imagine we have a dialog service that is responsible for showing dialogs to the user 
@@ -47,12 +46,8 @@ public interface IStorageService {
 
 ```
 
-Here we have a simple unit test for a view model class that has a dependencies to this two services. 
+Here we have a simple unit test for a view model class that is dependent on this two services. 
 In our tests we use [moq](https://github.com/moq/moq) as our mocking framework of choice. 
-
-*Please note that the commented stages of the AAA pattern are just for clarification. 
-One would need these kind of comments only when the test is complex and the three stages 
-are not clearly identifiable.*
 
 ```c#
 
@@ -84,11 +79,11 @@ public Task DeleteUserAsync_UserConfirms_ShouldDeleteUser()
     _storageService.Verify(mock => mock.Delete(It.IsAny<User>()), Times.Once());
 }
 ```
+*Please note that the commented stages of the AAA pattern are just for clarification. 
+One would need these kind of comments only when the test is complex and the three stages 
+are not clearly identifiable.*
 
-These tests are quite short and easy to understand. But nevertheless there is duplicated code.
-What happens, when the Product Owner decides the 'no' option should be changed to 'cancel'?
-
-Also the title of the confirm dialog seems to be irrelevant for the test cases but it has to be handled.
+These tests are quite short and easy to understand. But nevertheless there is duplicated and unrelevant code.
 
 Let's have a look how it could look like when we hide the calls to moq using SemanticMocking:
 
@@ -122,6 +117,7 @@ public Task DeleteUserAsync_UserConfirms_ShouldDeleteUser()
 Even for these short unit tests we can see some benefits here:
 - The tests are even shorter and easier to understand
 - There is less code duplication
+- No need to adapt the unit test when unrelevant aspects of the test have changed (eg. The 'no' option is renamed to 'cancel')
 - changing the mocking framework will be easier (no code specific to moq)
 
 # But know we are hiding the implementation details of the dependencies!
@@ -142,19 +138,17 @@ _storageService.Assert.UserWasDeleted();
 _storageService.Assert.UserWasNotDeleted();
 ```
 
-You can do this for sure. But when having a lot of tests keeping the list of mock methods short and be 
-able to reuse existing methods by parameterizing them could be the better choice for maintenance reasons.
+You can do this for sure. However, for a large number of tests it might be better to keep the list of mock methods short and be reusing existing methods by parameterization might be a better choice for maintenance reasons.
 When you provide good xml documentation and parameter names, intellisense will give you a good 
 explanation how to use these parameters.
 Remember that we should understand these mock methods as an API for your dependencies?
-Every API should be well documented (except everything that is self explaining). 
+Every API should be well documented (except everything that is self-explanatory). 
 The mock methods are no exception.
-For sure this won't help much during a code review you do in Bitbucket, Azure DevOps, etc. and not in the IDE. Therefore you
-should develop a common sense for when and how to use mock methods parameters within your team.
+For sure this won't help much during a code review you do in Bitbucket or Azure DevOps instead of the IDE. Therefore you should develop a common sense for when and how to use mock methods parameters within your team.
 
 # Ok, now you have convinced me. How can I start using it?
 Great. The easiest way to start is to add the SemanticMocking nuget packages to your test project. 
-At the moment the supported mocking frameworks are moq and NSubstitute. Adding support for further frameworks is quite easy. 
+At the moment the supported mocking frameworks are moq and NSubstitute. But adding support for other mocking frameworks is quite easy. 
 
 Just add one of these nuget package to your test project.
 
@@ -194,20 +188,57 @@ public class MyServiceMock : MoqMock<
 
 Yes, that is a lot of code for setup only, but it is worth it as soon as you use repeat using the same abstractions in different places.
 You can copy the Rider file template inside the [SemanticMocking.sln.DotSettings](SemanticMocking.sln.DotSettings) file to create new mocks 
-in an easy way. If someone creates a template for Visual Studio feel free to contribute!
+the easy way. If someone creates a template for Visual Studio feel free to contribute!
 
 ## Let's get into some details
-The behaviours of a mock are distributed over three sub classes: Arrangements, Assertions and Raises.
-The methods
+The behaviours of a mock are distributed over three sub classes: Arrangements, Assertions and Raises. Wich can be accessed by the coresponding properties Arrange, Assert and Raise of your mock. 
 
+As the names indicate you put all methods that do some mock behaviour setup into the Arrangements class and all methods that verify a behaviour into the Assertions class. The Raises class is for methods that raise an event of the mocked dependency.
+
+So if you want to write an assertion method you need to implement it in the Arrangements class:
+
+```c#
+...
+public void MyTest()
+{
+    _myServiceMock.Arrange.SomeBehaviour();
+}
+...
+
+public class Arrangements : BehaviourFor<MyServiceMock>
+{
+    public Arrangements SomeBehaviour()
+    {
+            // do some setup
+            return this;
+        }               
+    }
+}
 ```
+It is recommended to use the instance of the implemented behaviour class as return value for each method. Therefore you are always able to combine existing methods for your test setup. This improves the readabilty of the tests.
+
+```c#
+public void MyTest()
+{
     _myServiceMock.Arrange
+        .SomeBehaviour()
+        .SomeOtherBehaviour();
+}
 ```
 
 # Q&A
+
+## Why is raising events not included in Arrangements?
+That's a good question. In many scenarios we want to bring our SUT into a predefined state. 
+Therefore it might have to response to events raised by its dependencies. This is clearly part 
+of the arrangement phase. 
+But that is not always the case. It can be that you want to test the reaction of your SUT to 
+a given event from one of its dependencies. In this case raising the event is the act part 
+of the test. 
+
 ## What if the mocked dependency provides no events?
 You don't need to implement every type of behaviour. You can just use the helper class *NoBehaviour* as
-type in your mock class definition.
+behaviour implementation for your mock.
 
 ```c#
 using SemanticMocking.Abstractions;
@@ -225,15 +256,7 @@ public class MyServiceMock : MoqMock<
 }
 ```
 
-## Why is raising events not included in Arrangements?
-That's a good question. In many scenarios we want to bring our SUT into a predefined state. 
-Therefore it might have to response to events raised by its dependencies. This is clearly part 
-of the arrangement phase. 
-But that is not always the case. It can be that you want to test the reaction of you SUT to 
-a given event from one of its dependencies. In this case raising the event is the act part 
-of the test. 
+## Where can I learn more?
+There is a small sample project with some examples in this reprository. Just have a look. If you have any further questions you can [create a new issue on Github](https://github.com/EXXETA/SemanticMocking/issues).
 
-
-# Other Topics
-- What about Raises?
-
+Todo: Rename to BehaviourMocking???
