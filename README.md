@@ -1,6 +1,6 @@
 # What is it about?
 
-SemanticMocking helps you to abstract the mocking framework from the unit test and to provide 
+SemanticMocking helps you to abstract the mocking framework from the unit tests and to provide 
 an API for your dependencies that describe their behaviour in a more semantic way.
 
 SemanticMocking is not really a framework it is just a few classes that help you to implement 
@@ -122,7 +122,7 @@ Even for these short unit tests we can see some benefits here:
 
 # But know we are hiding the implementation details of the dependencies!
 Yes that is true. But does that really matter? We are testing the view model class
-and not the dependencies. The implementation details are just one F12-key press away.  
+and not the dependencies. The implementation details are just one click away.  
 
 Abstracting the details of the dependencies helps to focus on the interaction of the sut
 with the dependencies on a semantic level not a technical one.
@@ -258,5 +258,3 @@ public class MyServiceMock : MoqMock<
 
 ## Where can I learn more?
 There is a small sample project with some examples in this reprository. Just have a look. If you have any further questions you can [create a new issue on Github](https://github.com/EXXETA/SemanticMocking/issues).
-
-Todo: Rename to BehaviourMocking???
