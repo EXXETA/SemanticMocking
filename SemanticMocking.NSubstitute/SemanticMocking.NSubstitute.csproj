@@ -7,13 +7,13 @@
 
         <!-- NuGet metadata -->
         <PackageId>SemanticMocking.NSubstitute</PackageId>
-        <Version>0.1.1-alpha</Version>
+        <Version>1.0.1</Version>
         <Authors>Karim El Jed</Authors>
         <Company>EXXETA AG</Company>
         <PackRelease>true</PackRelease>
         <PackageProjectUrl>https://github.com/EXXETA/SemanticMocking/</PackageProjectUrl>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <PackageTags>nsubstitute;nunit;xunit;mstest</PackageTags>
+        <PackageTags>nunit;xunit;mstest;nsubstitute;mocking</PackageTags>
         <Description>Implementation of SemanticMocking using NSubstitute.</Description>
     </PropertyGroup>
 
@@ -23,7 +23,7 @@
     
     <ItemGroup>
         <PackageReference Include="NSubstitute" Version="4.4.0" />
-        <PackageReference Include="SemanticMocking.Abstractions" Version="0.1.1-alpha" />
+        <PackageReference Include="SemanticMocking.Abstractions" Version="1.0.1" />
     </ItemGroup>
 
     <ItemGroup>

@@ -7,19 +7,19 @@
 
         <!-- NuGet metadata -->
         <PackageId>SemanticMocking.Moq</PackageId>
-        <Version>0.1.1-alpha</Version>
+        <Version>1.0.1</Version>
         <Authors>Karim El Jed</Authors>
         <Company>EXXETA AG</Company>
         <PackRelease>true</PackRelease>
         <PackageProjectUrl>https://github.com/EXXETA/SemanticMocking/</PackageProjectUrl>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <PackageTags>moq;nunit;xunit;mstest</PackageTags>
+        <PackageTags>nunit;xunit;mstest;moq;mocking</PackageTags>
         <Description>Implementation of SemanticMocking using Moq.</Description>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Moq" Version="4.18.1" />
-        <PackageReference Include="SemanticMocking.Abstractions" Version="0.1.1-alpha" />
+        <PackageReference Include="SemanticMocking.Abstractions" Version="1.0.1" />
     </ItemGroup>
 
     <ItemGroup>

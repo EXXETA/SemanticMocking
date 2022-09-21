@@ -201,7 +201,7 @@ So if you want to write an assertion method you need to implement it in the Arra
 ...
 public void MyTest()
 {
-    _myServiceMock.Arrange.SomeBehaviour();
+    _myService.Arrange.SomeBehaviour();
 }
 ...
 
@@ -220,7 +220,7 @@ It is recommended to use the instance of the implemented behaviour class as retu
 ```c#
 public void MyTest()
 {
-    _myServiceMock.Arrange
+    _myService.Arrange
         .SomeBehaviour()
         .SomeOtherBehaviour();
 }
@@ -255,6 +255,15 @@ public class MyServiceMock : MoqMock<
     }      
 }
 ```
+## Do I always have to create a new method in my mock?
+No, you don't but it is recommended. You can access the underlying mocking framework mock via the Mock property
+of your mock implementation. Then you can use your mocking framework directly in the unit test code.
+
+```c#
+_myService.Mock.Setup(mock => mock.DoSomething()).Returns("something");
+```
+
+*By the way this is one reasons why the names of the mock instances don't end with the postfix "Mock" (_myService instead of _myServiceMock) in the given examples.* 
 
 ## Where can I learn more?
-There is a small sample project with some examples in this reprository. Just have a look. If you have any further questions you can [create a new issue on Github](https://github.com/EXXETA/SemanticMocking/issues).
+There is a small sample project with some examples in this repository. Just have a look. If you have any further questions you can [create a new issue on Github](https://github.com/EXXETA/SemanticMocking/issues).
