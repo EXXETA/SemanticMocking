@@ -126,7 +126,7 @@ and not the dependencies. The implementation details are just one click away.
 
 Abstracting the details of the dependencies helps to focus on the interaction of the sut
 with the dependencies on a semantic level not a technical one.
-Also from my experience the bigger a pull request is the less likely it is that someone will
+Also the bigger a pull request is the less likely it is that someone will
 have a deep look at the unit tests. Especially when they are hard to read and understand.
 
 # Wouldn't the mock methods look nicer without the boolean parameter?
@@ -138,7 +138,7 @@ _storageService.Assert.UserWasDeleted();
 _storageService.Assert.UserWasNotDeleted();
 ```
 
-You can do this for sure. However, for a large number of tests it might be better to keep the list of mock methods short and be reusing existing methods by parameterization might be a better choice for maintenance reasons.
+You can do this for sure. However, for a large number of tests it might be better to keep the list of mock methods short and reusing existing methods by parameterization might be a better choice for maintenance reasons.
 When you provide good xml documentation and parameter names, intellisense will give you a good 
 explanation how to use these parameters.
 Remember that we should understand these mock methods as an API for your dependencies?
@@ -186,7 +186,7 @@ public class MyServiceMock : MoqMock<
 }
 ```
 
-Yes, that is a lot of code for setup only, but it is worth it as soon as you use repeat using the same abstractions in different places.
+Yes, that is a lot of code for setup only, but it is worth it as soon as you use the same abstractions in different places.
 You can copy the Rider file template inside the [SemanticMocking.sln.DotSettings](SemanticMocking.sln.DotSettings) file to create new mocks 
 the easy way. If someone creates a template for Visual Studio feel free to contribute!
 
