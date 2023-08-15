@@ -120,7 +120,7 @@ Even for these short unit tests we can see some benefits here:
 - No need to adapt the unit test when unrelevant aspects of the test have changed (eg. The 'no' option is renamed to 'cancel')
 - changing the mocking framework will be easier (no code specific to moq)
 
-# But know we are hiding the implementation details of the dependencies!
+# But now we are hiding the implementation details of the dependencies!
 Yes that is true. But does that really matter? We are testing the view model class
 and not the dependencies. The implementation details are just one click away.  
 
